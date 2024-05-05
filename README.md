@@ -10,7 +10,9 @@ Esta página web puede crear sitios de hosting sin necesidad de tener los conoci
 
  -	AWS
  -	Kubernetes
- -	Reflex (Python)
+ -	HTML
+ -	CSS	
+ -	Javascript
  -	Terraform
  -	Ansible
 
