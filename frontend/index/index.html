@@ -9,31 +9,53 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            min-width: 500px;
             background-color: #f2f2f2;
         }
         header {
-            background-color: #333;
-            color: #fff;
+            background-image: url('layout/img/fondo_pantalla.png');
+            color: #444;
             padding: 20px;
+            height: 100vh;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 100% 100vh;
             text-align: center;
+            top: 0;
+            
+        }
+        /*Barra de navegación*/
+        header span{
+            align-items: center;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            position: fixed; /*Flotante*/
         }
         nav {
             background-color: #fff;
             color: #444;
             width: 60%;
-            height: 50px;
+            min-width: 500px;
+            height: 61px;
             font-size: large;
-            margin: auto;
             border-radius: 50px;
             display: flex;
             justify-content: space-around;
             align-items: center;
+            
         }
         nav a {
             text-decoration: none;
             display: inline-block;
-            width: max-content;
-            height: 100%;
+            color: #444;
+            width: 100px;
+            min-width: 50px;
+            width: px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            align-items: center;
+            text-align: center;
         }
         nav a:hover {
             color: #fff; 
@@ -41,32 +63,47 @@
 
             border-radius:30px; 
         }
-        section {
-            padding: 20px;
+        header #titleInicio{
+            margin: auto;
+            font-size: 100px;
+            font-weight:900;
+            padding-top: 40vh; 
+
+        }
+        section{
+            margin: auto;
+            width: 80%;
         }
         footer {
             background-color: #333;
             color: #fff;
             text-align: center;
-            padding: 10px;
-            position: fixed;
-            bottom: 0;
+            padding-top: 10px;
+            padding-bottom: 10px;
             width: 100%;
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>Mi Sitio Web</h1>
+        <span>
+            <nav>
+                <a href="#">Inicio</a>
+                <a href="#">Acerca de</a>
+                <a href="#">Contacto</a>
+                <a href="#">Contacto</a>
+            </nav>
+        </span>
+        
+        <h1 id="titleInicio">Origen</h1>
     </header>
-    <nav>
-        <span><a href="#">Inicio</a></span>
-        <span><a href="#">Acerca de</a></span>
-        <span><a href="#">Contacto</a></span>
-    </nav>
+    
     <section>
-        <h2>Bienvenido a mi sitio web</h2>
-        <p>Este es un sitio web de ejemplo. Puedes agregar tu contenido aquí.</p>
+        <div id="textoCreacion" alt="Crear dominios">
+            <h2>Creación del dominio</h2>
+            <p>Este es un sitio web de ejemplo. Puedes agregar tu contenido aquí.</p>
+        </div>
+        <div></div>
     </section>
     <footer>
         <p>Derechos de autor © 2024 - Mi Sitio Web</p>

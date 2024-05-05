@@ -1,0 +1,30 @@
+---
+- name: Instalar y configurar servidor LDAP
+  hosts: tu_servidor
+  become: yes
+
+  tasks:
+    - name: Actualizar repositorios e instalar paquetes necesarios
+      apt:
+        update_cache: yes
+        name: "{{ item }}"
+      loop:
+        - slapd
+        - ldap-utils
+      when: ansible_os_family == 'Debian'
+
+    - name: Configurar el servidor LDAP
+      template:
+        src: ldap_config.ldif.j2
+        dest: /tmp/ldap_config.ldif
+        owner: root
+        group: root
+
+    - name: Aplicar la configuración LDAP
+      shell: ldapmodify -Y EXTERNAL -H ldapi:/// -f /tmp/ldap_config.ldif
+      ignore_errors: yes
+
+    - name: Reiniciar el servicio LDAP
+      service:
+        name: slapd
+        state: restarted

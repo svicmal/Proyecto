@@ -10,4 +10,5 @@ terraform-inventory --output=inventario.ini
 
 # Ejecutar los playbooks 
 echo "Ejecutando playbooks de Ansible"
-ansible-playbook -i inventorio.ini ansible/cluste1/nginx_conf.yaml
+ansible-playbook -i /opt/inventario/ip_publica_web.txt ansible/cluste1/nginx_conf.yaml
+ansible-playbook -i /opt/inventario/ip_publica_correo.txt ansible/correo_conf.yaml

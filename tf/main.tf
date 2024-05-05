@@ -13,6 +13,10 @@ provider "aws" {
 }
 
 # Llamamos al archivo que creara el servidor nginx para crear otra pagina web
-module "Archivo_DNS" {
-  source = "./cluster.tf"
+module "Servidor_web" {
+  source = "./nginx_php.tf"
+}
+
+module "Servidor_correo" {
+  source = "./correo.tf"
 }
