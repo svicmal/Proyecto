@@ -1,0 +1,44 @@
+---
+- name: Configuración del servidor de correo
+  hosts: tu_servidor_de_correo
+  become: true
+  tasks:
+    - name: Actualizar repositorios
+      apt:
+        update_cache: yes
+
+    - name: Instalar Postfix y Dovecot
+      apt:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - postfix
+        - dovecot-core
+        - dovecot-imapd
+        - dovecot-pop3d
+        - dovecot-lmtpd
+
+    - name: Configurar Postfix
+      template:
+        src: postfix-main.cf.j2
+        dest: /etc/postfix/main.cf
+      notify:
+        - Reiniciar Postfix
+
+    - name: Configurar Dovecot
+      template:
+        src: dovecot.conf.j2
+        dest: /etc/dovecot/dovecot.conf
+      notify:
+        - Reiniciar Dovecot
+
+  handlers:
+    - name: Reiniciar Postfix
+      service:
+        name: postfix
+        state: restarted
+
+    - name: Reiniciar Dovecot
+      service:
+        name: dovecot
+        state: restarted

@@ -1,30 +1,53 @@
 ---
-- name: Instalar y configurar servidor LDAP
+- name: Configuración de Nginx, PHP-FPM y MySQL
   hosts: tu_servidor
-  become: yes
-
+  become: true
   tasks:
-    - name: Actualizar repositorios e instalar paquetes necesarios
+    - name: Actualizar repositorios
       apt:
         update_cache: yes
+
+    - name: Instalar Nginx, PHP-FPM y MySQL
+      apt:
         name: "{{ item }}"
+        state: present
       loop:
-        - slapd
-        - ldap-utils
-      when: ansible_os_family == 'Debian'
+        - nginx
+        - php-fpm
+        - php-mysql
+        - mysql-server
+        - python3-mysqldb  # Dependencia de Ansible para MySQL
+        - mysql-client
 
-    - name: Configurar el servidor LDAP
+    - name: Copiar archivo de configuración de Nginx
       template:
-        src: ldap_config.ldif.j2
-        dest: /tmp/ldap_config.ldif
-        owner: root
-        group: root
+        src: php.conf
+        dest: /etc/nginx/default.d/php.conf
+      notify:
+        - Reiniciar Nginx
 
-    - name: Aplicar la configuración LDAP
-      shell: ldapmodify -Y EXTERNAL -H ldapi:/// -f /tmp/ldap_config.ldif
-      ignore_errors: yes
+    - name: Copiar archivo de configuración de PHP-FPM
+      template:
+        src: php-fpm.conf.j2
+        dest: /etc/php/{{ php_version }}/fpm/php-fpm.conf
+      notify:
+        - Reiniciar PHP-FPM
 
-    - name: Reiniciar el servicio LDAP
+    - name: Configurar MySQL
+      mysql_db:
+        name: tu_base_de_datos
+        state: present
+      vars:
+        login_user: root
+        login_password: tu_contraseña_de_root
+
+  handlers:
+    - name: Reiniciar Nginx
       service:
-        name: slapd
+        name: nginx
+        state: restarted
+
+    - name: Reiniciar PHP-FPM
+      service:
+        name: php{{ php_version }}-fpm
         state: restarted

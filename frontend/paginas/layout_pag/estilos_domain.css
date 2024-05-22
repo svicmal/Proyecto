@@ -1,0 +1,8 @@
+.correct{
+    background-color: greenyellow;
+    color: black;
+}
+.fail{
+    background-color: red;
+    color: white;
+}
