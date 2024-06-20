@@ -1,0 +1,580 @@
+/*dominio.php */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+a { text-decoration: none; }
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    border-bottom: 3px solid #4b0082;
+}
+header nav a {
+    color: #4b0082;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease, background-color 0.3s ease, padding 0.3s ease;
+    padding: 5px;
+}
+header nav a:hover {
+    color: #fff;
+    background-color: #4b0082;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+.container {
+    display: flex;
+    flex: 1;
+}
+aside {
+    width: 20%;
+    background-color: #eee;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+aside ul {
+    list-style-type: none;
+    padding: 0;
+    width: 100%;
+}
+aside ul li {
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+aside ul li a {
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s ease, background-color 0.3s ease, padding 0.3s ease;
+    padding: 5px;
+    display: block;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+aside ul li a img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+aside ul li a:hover {
+    color: #fff;
+    background-color: #4b0082;
+    padding: 5px 10px;
+}
+main {
+    width: 80%;
+    padding: 20px;
+    overflow-y: auto;
+}
+.search-bar {
+    width: 300px;
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.search-container {
+    display: flex;
+    align-items: center;
+}
+.status {
+    margin-top: 20px;
+}
+.status h2 {
+    margin-bottom: 20px;
+}
+.status div {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.status div:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+.status div h3 {
+    margin: 10px 0;
+}
+.status div p {
+    margin: 0;
+}
+.status .active {
+    background-color: green;
+    color: white;
+}
+.status .inactive {
+    background-color: red;
+    color: white;
+}
+.form-container {
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    width: 90%;
+}
+.form-container h2 {
+    margin-bottom: 20px;
+}
+.form-container input {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.active a{ color: #fff;}
+.form-container button {
+    background-color: #4b0082;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.form-container button:hover {
+    background-color: #372665;
+}
+
+
+/*consultas.php*/
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    border-bottom: 3px solid #4b0082;
+}
+
+header nav a {
+    color: #4b0082;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease, background-color 0.3s ease, padding 0.3s ease;
+    padding: 5px;
+}
+
+header nav a:hover {
+    color: #fff;
+    background-color: #4b0082;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.container {
+    display: flex;
+    flex: 1;
+}
+a {
+   text-decoration: none;
+}
+aside {
+    width: 20%;
+    background-color: #eee;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+aside ul {
+    list-style-type: none;
+    padding: 0;
+    width: 100%;
+}
+
+aside ul li {
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+aside ul li a {
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s ease, background-color 0.3s ease, padding 0.3s ease;
+    padding: 5px;
+    display: block;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+aside ul li a img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+aside ul li a:hover {
+    color: #fff;
+    background-color: #4b0082;
+    padding: 5px 10px;
+}
+
+main {
+    width: 80%;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.create-domain, .server-list {
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    width: 100%;
+}
+
+.create-domain h2, .server-list h2 {
+    margin-bottom: 20px;
+}
+
+.create-domain button, .server-list button {
+    background-color: #4b0082;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.create-domain button:hover, .server-list button:hover {
+    background-color: #372665;
+}
+
+.server-list ul {
+    list-style-type: none;
+    padding: 0;
+    width: 100%;
+}
+
+.server-list ul li {
+    margin: 10px 0;
+    color: #333;
+}
+
+.form-container {
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    width: 90%;
+}
+
+.form-container h2 {
+    margin-bottom: 20px;
+}
+
+.form-container input {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form-container button {
+    background-color: #4b0082;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.form-container button:hover {
+    background-color: #372665;
+}
+
+/*inicio.php*/
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    border-bottom: 3px solid #4b0082;
+}
+header nav a {
+    color: #4b0082;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease, background-color 0.3s ease, padding 0.3s ease;
+    padding: 5px;
+}
+header nav a:hover {
+    color: #fff;
+    background-color: #4b0082;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+.container {
+    display: flex;
+    flex: 1;
+}
+aside {
+    width: 20%;
+    background-color: #eee;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+aside ul {
+    list-style-type: none;
+    padding: 0;
+    width: 100%;
+}
+aside ul li {
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+aside ul li a {
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s ease, background-color 0.3s ease, padding 0.3s ease;
+    padding: 5px;
+    display: block;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+aside ul li a img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+aside ul li a:hover {
+    color: #fff;
+    background-color: #4b0082;
+    padding: 5px 10px;
+}
+main {
+    width: 80%;
+    padding: 20px;
+    overflow-y: auto;
+}
+.search-bar {
+    width: 300px;
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.search-container {
+    display: flex;
+    align-items: center;
+}
+.news {
+    margin-top: 20px;
+}
+.news h2 {
+    margin-bottom: 20px;
+}
+.news article {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.news article:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+.news article img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+.news article h3 {
+    margin: 10px 0;
+}
+.news article p {
+    margin: 0;
+}
+.form-container {
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    width: 90%;
+}
+.form-container h2 {
+    margin-bottom: 20px;
+}
+.form-container input {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.form-container button {
+    background-color: #4b0082;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.form-container button:hover {
+    background-color: #372665;
+}
+/*index.html*/
+body{
+    background-color: #13072E;
+    color: white;
+    padding: 50px;
+}
+#container{
+    margin: auto;
+}
+ul{
+    list-style-type: none;
+}
+a {
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+}
+
+#menu {
+    font-size: 30px;
+    font-weight: 700;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+#nombre {
+    width: 30px;
+}
+#lista-acceso{
+    width: 50%;
+}
+#lista-acceso ul {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+}
+#lista-acceso li:hover{
+    cursor: pointer;
+}
+#parte-abajo{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(to bottom right, #13072E, #3F2182);
+    border-radius: 30px;
+    margin-top: 10%;
+
+}
+#info-inicio{
+    width: 40%;
+    height: 80vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 30px;
+    font-weight: 500;
+    border-radius: 50px;
+}
+#imagen-inicio{
+    border-radius: 50px;
+    padding: 10px;
+
+}
+#enlace{
+    margin-top: 60px;
+    border-radius: 30px;
+    background-color: white;
+    text-align: center;
+    color: black;
+}

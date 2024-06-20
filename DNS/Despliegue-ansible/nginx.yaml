@@ -1,7 +1,12 @@
 ---
 - name: Configuración de Nginx, PHP-FPM y MySQL
-  hosts: tu_servidor
+  hosts: all
   become: true
+  become_user: root
+  vars:
+    php_version: 8.2  # Ajusta según la versión de PHP que estés utilizando
+    mysql_root_password: 'tu_contraseña_de_root'
+
   tasks:
     - name: Actualizar repositorios
       apt:
@@ -15,31 +20,32 @@
         - nginx
         - php-fpm
         - php-mysql
-        - mysql-server
-        - python3-mysqldb  # Dependencia de Ansible para MySQL
-        - mysql-client
+   - name: Crear directorio web si no existe
+      file:
+        path: /home/admin/web/
+        state: directory
+        mode: '0755'
 
     - name: Copiar archivo de configuración de Nginx
-      template:
-        src: php.conf
-        dest: /etc/nginx/default.d/php.conf
+      copy:
+        src: default
+        dest: /etc/nginx/sites-enabled/
+      notify:
+        - Reiniciar Nginx
+
+    - name: Copiar archivos de la página web de forma recursiva
+      copy:
+        src: /home/admin/despliegue/ansible/pag/
+        dest: /home/admin/web/
       notify:
         - Reiniciar Nginx
 
     - name: Copiar archivo de configuración de PHP-FPM
       template:
-        src: php-fpm.conf.j2
-        dest: /etc/php/{{ php_version }}/fpm/php-fpm.conf
+        src: www.conf
+        dest: /etc/php/{{ php_version }}/fpm/pool.d/
       notify:
         - Reiniciar PHP-FPM
-
-    - name: Configurar MySQL
-      mysql_db:
-        name: tu_base_de_datos
-        state: present
-      vars:
-        login_user: root
-        login_password: tu_contraseña_de_root
 
   handlers:
     - name: Reiniciar Nginx
